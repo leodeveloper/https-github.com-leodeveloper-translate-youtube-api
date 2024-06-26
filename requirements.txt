@@ -1,0 +1,9 @@
+streamlit
+python-dotenv
+langchain_community
+pymongo
+motor
+pydantic
+cryptography
+youtube-transcript-api
+pytube
