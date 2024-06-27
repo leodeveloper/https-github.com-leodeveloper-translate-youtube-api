@@ -46,18 +46,22 @@ def main() -> None:
                     fileidobj = get_json_drive(source)
                     #print(fileidobj['id'])
                     if fileidobj:
-                        translation = getfilefromdrive(fileidobj['id'])
-                        translation = json.loads(translation)
-                        st.title("English")
-                        st.markdown(f"<div style='text-align: left;'>{translation['t_english']}</div>", unsafe_allow_html=True)
-                        st.title("Urdu")
-                        st.markdown(f"<div style='text-align: right;'>{translation['t_urdu']}</div>", unsafe_allow_html=True)
-                        st.title("Spanish")
-                        st.markdown(f"<div style='text-align: left;'>{translation['t_spanish']}</div>", unsafe_allow_html=True)
-                        st.title("Arabic")
-                        st.markdown(f"<div style='text-align: right;'>{translation['t_arabic']}</div>", unsafe_allow_html=True)
-                        st.title("Italian")
-                        st.markdown(f"<div style='text-align: left;'>{translation['t_italian']}</div>", unsafe_allow_html=True)
+                        #file id is used for google drive file id
+                        translation = getfilefromdrive(fileidobj['id'],source)
+                        if translation:
+                            translation = json.loads(translation)
+                            st.title("English")
+                            st.markdown(f"<div style='text-align: left;'>{translation['t_english']}</div>", unsafe_allow_html=True)
+                            st.title("Urdu")
+                            st.markdown(f"<div style='text-align: right;'>{translation['t_urdu']}</div>", unsafe_allow_html=True)
+                            st.title("Spanish")
+                            st.markdown(f"<div style='text-align: left;'>{translation['t_spanish']}</div>", unsafe_allow_html=True)
+                            st.title("Arabic")
+                            st.markdown(f"<div style='text-align: right;'>{translation['t_arabic']}</div>", unsafe_allow_html=True)
+                            st.title("Italian")
+                            st.markdown(f"<div style='text-align: left;'>{translation['t_italian']}</div>", unsafe_allow_html=True)
+                        else:
+                            st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
                     else:
                         st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
                     
