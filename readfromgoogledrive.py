@@ -7,9 +7,18 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaIoBaseDownload
+from src.utils_dycrypt import decrypt_string
+from dotenv import load_dotenv
+load_dotenv()
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/drive"]
+
+
+key = os.getenv("encryptkey")
+client_id=decrypt_string(os.getenv("client_id"),key)
+client_secret=decrypt_string(os.getenv("client_secret"),key)
+project_id=os.getenv("project_id")
 
 
 def getfilefromdrive(fileId):
@@ -27,9 +36,21 @@ def getfilefromdrive(fileId):
     if creds and creds.expired and creds.refresh_token:
       creds.refresh(Request())
     else:
-      flow = InstalledAppFlow.from_client_secrets_file(
-          "client_secret.json", SCOPES
-      )
+      config={
+                  "installed": {
+                      "client_id": client_id,
+                      "project_id": project_id,
+                      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+                      "token_uri": "https://oauth2.googleapis.com/token",
+                      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+                      "client_secret": client_secret,
+                      "redirect_uris": [
+                          "http://localhost"
+                      ]
+                  }
+              }
+      flow =InstalledAppFlow.from_client_config(config,SCOPES)
+      #flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
       creds = flow.run_local_server(port=0)
     # Save the credentials for the next run
     with open("token.json", "w") as token:
