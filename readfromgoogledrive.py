@@ -19,6 +19,7 @@ key = os.getenv("encryptkey")
 client_id=decrypt_string(os.getenv("client_id"),key)
 client_secret=decrypt_string(os.getenv("client_secret"),key)
 project_id=os.getenv("project_id")
+redirecturi=os.getenv("redirect_uri")
 
 
 def getfilefromdrive(fileId):
@@ -45,7 +46,7 @@ def getfilefromdrive(fileId):
                       "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
                       "client_secret": client_secret,
                       "redirect_uris": [
-                          "http://localhost"
+                          redirecturi
                       ]
                   }
               }
