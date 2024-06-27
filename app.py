@@ -32,16 +32,14 @@ def main() -> None:
             response = get_json(sourceId)
             if response is not None:
                 source = decrypt_string(response.get('source'),key)
-                title = response.get('title'),key
+                title = response.get('title')
                 thumbnail_url = decrypt_string(response.get('thumbnail_url'),key)
                 publish_date = response.get('publish_date')
-                youtubelink = decrypt_string(response.get('youtubelink'),key)
                 # Print the values
                 st.write(f"Title: {title}")
-                st.write(f"Thumbnail URL: {thumbnail_url}")
+                st.image(thumbnail_url)
                 st.write(f"Publish Date: {publish_date}")
-                st.write(f"YouTube Link: {youtubelink}")
-
+                
                 with st.spinner("Please wait......"):
                     fileidobj = get_json_drive(source)
                     #print(fileidobj['id'])

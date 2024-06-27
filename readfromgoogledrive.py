@@ -28,7 +28,6 @@ def getfilefromdrive(fileId, fileName):
     print(fileName)
     with open(f'translations/{fileName}.json', 'r', encoding='utf-8')as readfile:
       file = readfile.read()
-      print(file)
       return file
   except Exception as e:
     return None
