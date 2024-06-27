@@ -25,7 +25,6 @@ SCOPES = ["https://www.googleapis.com/auth/drive"]
 
 def getfilefromdrive(fileId, fileName):
   try:
-    print(fileName)
     with open(f'translations/{fileName}.json', 'r', encoding='utf-8')as readfile:
       file = readfile.read()
       return file
