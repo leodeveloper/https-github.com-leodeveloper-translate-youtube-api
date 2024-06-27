@@ -16,11 +16,11 @@ load_dotenv()
 SCOPES = ["https://www.googleapis.com/auth/drive"]
 
 
-key = os.getenv("encryptkey")
-client_id=decrypt_string(os.getenv("client_id"),key)
-client_secret=decrypt_string(os.getenv("client_secret"),key)
-project_id=os.getenv("project_id")
-redirecturi=os.getenv("redirect_uri")
+#key = os.getenv("encryptkey")
+#client_id=decrypt_string(os.getenv("client_id"),key)
+#client_secret=decrypt_string(os.getenv("client_secret"),key)
+#project_id=os.getenv("project_id")
+#redirecturi=os.getenv("redirect_uri")
 
 
 def getfilefromdrive(fileId, fileName):
