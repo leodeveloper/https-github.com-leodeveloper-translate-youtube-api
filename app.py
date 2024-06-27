@@ -45,29 +45,29 @@ def main() -> None:
                     st.write("<a href='#italian'>Italian</a> | <a href='#english'>English</a> | <a href='#urdu'>Urdu</a> | <a href='#arabic'>Arabic</a> | <a href='#spanish'>Spanish</a>", unsafe_allow_html=True)
                     
                     #print(fileidobj['id'])
-                    if fileidobj:
+                    #if fileidobj:
                         #file id is used for google drive file id
-                        translation = getfilefromdrive(fileidobj['id'],source)
-                        if translation:
-                            translation = json.loads(translation)
-                            st.title("English")
-                            st.markdown(f"<div style='text-align: left;'>{translation['t_english']}</div>", unsafe_allow_html=True)
-                            st.title("Urdu")
-                            st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
-                            st.markdown(f"<div style='text-align: right;'>{translation['t_urdu']}</div>", unsafe_allow_html=True)
-                            st.title("Arabic")
-                            st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
-                            st.markdown(f"<div style='text-align: right;'>{translation['t_arabic']}</div>", unsafe_allow_html=True)
-                            st.title("Spanish")
-                            st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
-                            st.markdown(f"<div style='text-align: left;'>{translation['t_spanish']}</div>", unsafe_allow_html=True)
-                            st.title("Italian")
-                            st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
-                            st.markdown(f"<div style='text-align: left;'>{translation['t_italian']}</div>", unsafe_allow_html=True)
-                        else:
-                            st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
+                    translation = getfilefromdrive('',source)
+                    if translation:
+                        translation = json.loads(translation)
+                        st.title("English")
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_english']}</div>", unsafe_allow_html=True)
+                        st.title("Urdu")
+                        st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='text-align: right;'>{translation['t_urdu']}</div>", unsafe_allow_html=True)
+                        st.title("Arabic")
+                        st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='text-align: right;'>{translation['t_arabic']}</div>", unsafe_allow_html=True)
+                        st.title("Spanish")
+                        st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_spanish']}</div>", unsafe_allow_html=True)
+                        st.title("Italian")
+                        st.markdown("<a href='#translation'>Top</a>", unsafe_allow_html=True)
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_italian']}</div>", unsafe_allow_html=True)
                     else:
                         st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
+                    #else:
+                        #st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
                     
 
             else:
