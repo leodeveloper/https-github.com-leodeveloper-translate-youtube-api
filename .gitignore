@@ -154,6 +154,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 envtran/
+client_secret.json
+token.json
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can

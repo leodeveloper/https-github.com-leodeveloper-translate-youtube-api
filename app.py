@@ -1,16 +1,26 @@
 import os
+import json
 import streamlit as st
 from src.utils_json import get_json
+from src.utils_fileid import get_json_drive
 from src.utils_dycrypt import decrypt_string
 from src.utils_method import get_query_params
-from src.utils_youtube import get_youtube_transcript
+from readfromgoogledrive import getfilefromdrive
 
 from dotenv import load_dotenv
 load_dotenv()
 
 key=os.getenv("encryptkey")
 
+mystyle = '''
+    <style>
+        p {
+            text-align: right;
+        }
+    </style>
+    '''
 
+#st.markdown(mystyle, unsafe_allow_html=True)
 
 # Main function to run the app
 def main() -> None:
@@ -33,17 +43,31 @@ def main() -> None:
                 st.write(f"YouTube Link: {youtubelink}")
 
                 with st.spinner("Please wait......"):
-                    transur = get_youtube_transcript(youtubelink,'en','en')
-                    st.write(transur)
-                    transur = get_youtube_transcript(youtubelink,'en','ur')
-                    st.write(transur)
+                    fileidobj = get_json_drive(source)
+                    #print(fileidobj['id'])
+                    if fileidobj:
+                        translation = getfilefromdrive(fileidobj['id'])
+                        translation = json.loads(translation)
+                        st.title("English")
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_english']}</div>", unsafe_allow_html=True)
+                        st.title("Urdu")
+                        st.markdown(f"<div style='text-align: right;'>{translation['t_urdu']}</div>", unsafe_allow_html=True)
+                        st.title("Spanish")
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_spanish']}</div>", unsafe_allow_html=True)
+                        st.title("Arabic")
+                        st.markdown(f"<div style='text-align: right;'>{translation['t_arabic']}</div>", unsafe_allow_html=True)
+                        st.title("Italian")
+                        st.markdown(f"<div style='text-align: left;'>{translation['t_italian']}</div>", unsafe_allow_html=True)
+                    else:
+                        st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
+                    
 
             else:
-                st.write("No response from API")
+                st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
         else:
-            st.write("No source query parameters found.")
+            st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
     else:
-        st.write("No query parameters found.")
+        st.write("No tranlation found please contact on this email leodeveloper@gmail.com or message on linkedin https://www.linkedin.com/in/sulemanmuhammad/")
 
 if __name__ == "__main__":
     main()
